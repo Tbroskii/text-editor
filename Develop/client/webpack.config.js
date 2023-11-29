@@ -18,8 +18,25 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './src/index.html', // Path to your HTML template
+        chunks: ['main', // Specify which chunks to include in this HTML file
     ],
+
+    new WebpackPwaManifest({
+      name: 'Your App Name',
+      short_name: 'Your App',
+      description: 'Description of your app',
+      background_color: '#ffffff',
+      theme_color: '#000000',
+      crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
+      icons: [
+        {
+          src: path.resolve('src/img/icon.png'), // Path to your app icon
+          sizes: [96, 128, 192, 256, 384, 512],
+        },
+      ],
+    }),
 
     module: {
       rules: [
